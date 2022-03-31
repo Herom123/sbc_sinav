@@ -13,7 +13,7 @@
         }
         .filling
         {
-            font-size: 8pt;
+            font-size: 24pt;
             position: relative;
             left: 30px;
             top: 10px;
@@ -30,7 +30,7 @@
         }
         .question
         {
-            font-size: 8pt;
+            font-size: 24pt;
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -51,6 +51,14 @@
         .correct
         {
             color: green;
+        }
+        .e
+        {
+            color: rgb(32, 32, 32);
+        }
+        button
+        {
+            font-size: 8pt;
         }
         </style>
     </head>
@@ -192,9 +200,10 @@
                 <span class="cell input" contenteditable="true"answer="Ulaşımda merkez olması"></span>
             </div>
         </div>
-        <br><br><br><br><button id="check">Kontrol Et</button><br><br><br>
+        <br><br><br><br><button id="check">Kontrol Et</button>&nbsp;<button id="show">Cevapları Göster</button><br><br><br>
         <script>
             document.getElementById("check").addEventListener("click",check)
+            document.getElementById("show").addEventListener("click",show)
             function check()
             {
                 qbloks=document.querySelectorAll(".question-block")
@@ -227,6 +236,19 @@
                         }
                     };
                 };
+            }
+            function show()
+            {
+                qbloks=document.querySelectorAll(".question-block")
+                for(n=0;n<qbloks.length;n++){
+                    fillings=qbloks[n].querySelectorAll(".filling")
+                    for(nn=0;nn<fillings.length;nn++)
+                    {
+                        var input = fillings[nn].querySelectorAll("span.cell.input")[0];
+                        input.innerText=input.getAttribute("answer");
+                    }
+                }
+
             }
         </script>
     </body>
