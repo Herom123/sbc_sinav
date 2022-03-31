@@ -203,18 +203,27 @@
                     for(nn=0;nn<fillings.length;nn++)
                     {
                         var input = fillings[nn].querySelectorAll("span.cell.input")[0];
-                        var c = input.getAttribute("answer").toLowerCase();
-                        var u = input.innerText.toLowerCase();
+                        var cc = input.getAttribute("answer").toLowerCase().split(" ");
+                        var uu = input.innerText.toLowerCase().split(" ");
 
                         input.innerHTML = "";
 
-                        var i;
-                        for(i = 0;i<c.length;i++)
+                        var i,n;
+                        if(uu[0]==""||cc[0]=="") continue;
+                        for(n = 0;n<cc.length&&n<uu.length;n++)
                         {
-                            if(u[i] == c[i])
-                                input.innerHTML+="<span class='correct'>"+c[i]+"</span>";
-                            else
-                                input.innerHTML+="<span class='wrong'>"+c[i]+"</span>";
+
+                            c = cc[n];
+                            u = uu[n];
+
+                            for(i = 0;i<c.length;i++)
+                            {
+                                if(u[i] == c[i])
+                                    input.innerHTML+="<span class='correct'>"+c[i]+"</span>";
+                                else
+                                    input.innerHTML+="<span class='wrong'>"+c[i]+"</span>";
+                            }
+                            input.innerHTML+=" ";
                         }
                     };
                 };
